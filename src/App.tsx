@@ -73,9 +73,9 @@ render () {
           <Route path="/Training">
           <Training admin={this.state.admin}/>
           </Route>
-          {/* <Route path="/">
+          <Route path="/">
           <Redirect to="/SignIn" />
-          </Route> */}
+          </Route>
           <Route path="/Users">
             <Users reviseToken={this.reviseToken}/>
             <Redirect to="/Users" />

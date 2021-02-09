@@ -133,6 +133,11 @@ class Training extends Component<TrainingProps, TrainingState>{
       <Link to={"/Users"}>
       <button>View Users</button>
       </Link>
+      <div style={{position: 'absolute', right: '30%', bottom: '-200%'}}className={"button"}>
+    <Link to="/SignIn">
+    <button>Sign Out</button>
+    </Link>
+    </div>
      </div>
     </div>
     )     
