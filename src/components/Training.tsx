@@ -119,7 +119,7 @@ class Training extends Component<TrainingProps, TrainingState>{
   </Card>)
     return (
       <div className="wrapper2">
-        <h1>Admin Page</h1>
+       {/* <h1>Admin Page</h1> */}
        <div>
         <h3 style={{position: 'absolute', left: '50%', top: '25%',
         transform: 'translate(-50%, -50%)'}}>Upcoming Trainings</h3>
@@ -142,9 +142,8 @@ class Training extends Component<TrainingProps, TrainingState>{
       <button>Logout</button>
       </Link>
       <br/>
-      <Link to="/CreateTraining">
-      <button>CreateTraining</button>
-      </Link>
+      <CreateTraining training={this} token={this.props.token}/>
+    
     </Nav>
 </Navbar>
 </div>
