@@ -12,10 +12,11 @@ import { Redirect } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { isNullishCoalesce } from 'typescript';
 import Users from './components/Users';
+import CreateTraining from './components/CreateTraining';
 
 type AppState = {
  userID: string
- token: string | null
+ token: string
  admin: boolean | null
  localStorage: string | null
  userSetUp: boolean | null
@@ -37,7 +38,7 @@ class App extends React.Component<{}, AppState> {
   
   componentDidMount() {
     if (localStorage.getItem('token')) 
-    this.setState( {token: localStorage.getItem('token')})
+    this.setState( {token: localStorage.getItem('token') as string})
       }
 
 reviseToken(newToken: string) {
@@ -71,14 +72,16 @@ render () {
             <SignIn reviseToken={this.reviseToken} reviseAdmin={this.reviseAdmin}/>
           </Route>
           <Route path="/Training">
-          <Training admin={this.state.admin}/>
+          <Training admin={this.state.admin} token={this.state.token}/>
+          </Route>
+         
+          <Route path="/Users">
+            <Users reviseToken={this.reviseToken}/>
+          </Route>
+          <Route path="/CreateTraining" >
           </Route>
           <Route path="/">
           <Redirect to="/SignIn" />
-          </Route>
-          <Route path="/Users">
-            <Users reviseToken={this.reviseToken}/>
-            <Redirect to="/Users" />
           </Route>
         </Switch>
       )

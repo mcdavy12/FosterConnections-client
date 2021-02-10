@@ -8,7 +8,7 @@ import {Card, Button, CardImg, CardTitle, CardText, CardGroup,
 import SignIn from './SignIn';
 
 
-interface EditTrainingProps {
+interface CreateTrainingProps {
     name?: any;
     value?: any;
     admin?: boolean | null;
@@ -19,7 +19,7 @@ interface EditTrainingProps {
     token: string;
   }
   
-  interface EditTrainingSingle {
+  interface CreateTrainingSingle {
     title: string,
     time: string,
     description: string,
@@ -29,17 +29,17 @@ interface EditTrainingProps {
     show: boolean,
   }
   
-  interface EditTrainingState {
-    Edittrainings: EditTrainingSingle[],
+  interface CreateTrainingState {
+    Createtrainings: CreateTrainingSingle[],
     show: true | false,
   }
 
-  class EditTraining extends Component<EditTrainingProps, EditTrainingSingle>{
-    constructor(props: EditTrainingProps) {
+  class CreateTraining extends Component<CreateTrainingProps, CreateTrainingSingle>{
+    constructor(props: CreateTrainingProps) {
       super(props);
       
 
-      const initialState: EditTrainingSingle[] = []
+      const initialState: CreateTrainingSingle[] = []
     
       this.state = {title: this.props.training.title, 
                     time: this.props.training.time,
@@ -59,8 +59,8 @@ interface EditTrainingProps {
   
     async handleSubmit() {
       console.log("fetching results")
-      const results = await fetch(`http://localhost:3001/training/${this.props.training.id}`, {
-        method: 'PUT',
+      const results = await fetch(`http://localhost:3001/training/`, {
+        method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization': this.props.token
@@ -70,7 +70,6 @@ interface EditTrainingProps {
       })
       const jsonifyResults = await results.json()
       this.setState({show: false})
-      console.log(EditTraining)
     
     }
 
@@ -87,13 +86,13 @@ render() {
 return(
 <>
     <Button variant="primary" onClick={this.handleShow}>
-    EditTraining
+    CreateTraining
   </Button>
    
   <Modal className="custom-modal-style"
 isOpen={this.state.show} onHide={this.handleClose}>
     <ModalHeader closeButton>
-      <h2>Edit Training</h2>
+      <h2>Create Training</h2>
     </ModalHeader>
     <ModalBody>
         
@@ -119,4 +118,4 @@ isOpen={this.state.show} onHide={this.handleClose}>
 );
 }
   }
-export default EditTraining;
+export default CreateTraining;

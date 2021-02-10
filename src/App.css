@@ -124,13 +124,49 @@ button:hover {
   margin-top:-35%;
 }
 
-.viewUsers {
+.viewusers {
+  position: absolute;
+  /* display: inline-flex; */
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 60%;
+  margin-top:-35%;
+}
+.custom-modal-style {
+  display: absolute ;
+  width: 500px;
+  height: 450px;
+  justify-content: center;
+  margin-top: -40%;
+  margin-left: 30%;
+  background-color: white;
+
+} 
+
+.addTraining {
   position: absolute;
   /* display: inline-flex; */
   font-family: Arial, Helvetica, sans-serif;
   margin-left: -90%;
-  margin-top:-40%;
+  margin-top:-25%;
 }
 
+.signout {
+  position: relative;
+  /* display: inline-flex; */
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 40%;
+  margin-top:-30%;
+}
 
+.navbar {
+  display: inline;
+  position: relative;
+  margin-left: 80%;
 
+}
+
+.modalinputs {
+  align-content: center;
+  width: 2em;
+  
+}

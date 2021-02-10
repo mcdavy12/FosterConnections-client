@@ -4,16 +4,18 @@ import React, { Component, useState } from 'react';
 import { isPropertySignature } from 'typescript';
 import { Link, Redirect, Route, Switch } from 'react-router-dom';
 import {Card, Button, CardImg, CardTitle, CardText, CardGroup,
-  CardSubtitle, CardBody, CardDeck, Table, Row, Col} from 'reactstrap';
+  CardSubtitle, CardBody, CardDeck, Table, Row, Col, Collapse, Navbar,NavbarToggler,NavbarBrand, Nav,NavItem,NavLink,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem,NavbarText, Form, Input} from 'reactstrap';
 import SignIn from './SignIn';
 import EditTraining from './EditTraining';
 import Users from './Users';
+import CreateTraining from './CreateTraining';
 
 
 interface TrainingProps {
   name?: any;
   value?: any;
   admin: boolean | null;
+  token: string;
 }
 
 interface TrainingSingle {
@@ -23,6 +25,7 @@ interface TrainingSingle {
   hours: string,
   owner: string,
   userId: string,
+  
 }
 
 interface TrainingState {
@@ -101,6 +104,7 @@ class Training extends Component<TrainingProps, TrainingState>{
     </div>    
   )
   } else {
+    
     const result = trainings.map((t: any)=>
     <Card style={{ flex: 1, marginInline: '1em'}} >
     <CardBody style={{backgroundColor:"whitesmoke"}}>
@@ -108,12 +112,14 @@ class Training extends Component<TrainingProps, TrainingState>{
       <CardSubtitle style={{textAlign:'center'}}tag="h5" className="mb-2 text-muted">{t.time}</CardSubtitle>
       <CardText style={{textAlign: 'center'}}>{t.description}</CardText>
       
-      <EditTraining ID={t.id}/>
       
+      <EditTraining training={t} token={this.props.token}/>
+     
     </CardBody>
   </Card>)
     return (
       <div className="wrapper2">
+        <h1>Admin Page</h1>
        <div>
         <h3 style={{position: 'absolute', left: '50%', top: '25%',
         transform: 'translate(-50%, -50%)'}}>Upcoming Trainings</h3>
@@ -125,24 +131,30 @@ class Training extends Component<TrainingProps, TrainingState>{
     <div className="Admin">
       <h1>Admin Page</h1>
     </div>
-    <div className="addTraining">
-      <Button style={{alignContent: "center", position: "relative", marginLeft: "-9.5%"}}>Add Training</Button>
-    </div>
-    
-    <div className="viewUsers">
-      <Link to={"/Users"}>
-      <button>View Users</button>
+  <Navbar className="navbar" bg="dark" variant="dark">
+    {/* <Brand href="#home">Navbar</Navbar.Brand> */}
+    <Nav className="mr-auto">
+      <Link to="/Users">
+      <button>View All Users</button>
       </Link>
-      <div style={{position: 'absolute', right: '30%', bottom: '-200%'}}className={"button"}>
-    <Link to="/SignIn">
-    <button>Sign Out</button>
-    </Link>
-    </div>
-     </div>
-    </div>
-    )     
-}
+      <br/>
+      <Link to="/SignIn">
+      <button>Logout</button>
+      </Link>
+      <br/>
+      <Link to="/CreateTraining">
+      <button>CreateTraining</button>
+      </Link>
+    </Nav>
+</Navbar>
+</div>
+  
+    
+    );
+    }
   }
 }
+  
+
 
 export default Training
